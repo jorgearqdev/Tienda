@@ -1,28 +1,29 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.ceiba.evento.puerto.repositorio.RepositorioEvento;
+import com.ceiba.evento.servicio.ServicioActualizarEvento;
+import com.ceiba.evento.servicio.ServicioCrearEvento;
+import com.ceiba.evento.servicio.ServicioSwitchEvento;
 
 @Configuration
 public class BeanServicio {
 
     @Bean
-    public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioCrearUsuario(repositorioUsuario);
+    public ServicioCrearEvento servicioCrearEvento(RepositorioEvento repositorioEvento) {
+        return new ServicioCrearEvento(repositorioEvento);
     }
 
     @Bean
-    public ServicioEliminarUsuario servicioEliminarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioEliminarUsuario(repositorioUsuario);
+    public ServicioSwitchEvento servicioSwitchEvento(RepositorioEvento repositorioEvento) {
+        return new ServicioSwitchEvento(repositorioEvento);
     }
 
     @Bean
-    public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioActualizarUsuario(repositorioUsuario);
+    public ServicioActualizarEvento servicioActualizarEvento(RepositorioEvento repositorioEvento) {
+        return new ServicioActualizarEvento(repositorioEvento);
     }
 	
 

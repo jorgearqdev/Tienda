@@ -19,18 +19,19 @@ pipeline {
 	stage('Build') {
       steps {
         echo "------------>Build<------------"
-		sh 'gradlew clean assembleRelease'
-		sh 'gradlew build -x test'
+		sh 'chmod +x gradlew'
+		sh './gradlew --b ./build.gradle -x test'
       }
     }  
     
     stage('Compile & Unit Tests') {
 		steps{
 			echo "------------>>Clean<------------"
-			sh 'gradlew clean'
+			sh 'chmod +x gradlew'
+			sh './gradlew clean'
 
 			echo "------------>Unit Tests<------------"
-			sh 'gradlew test'
+			sh './gradlew test'
 		}
     }
 

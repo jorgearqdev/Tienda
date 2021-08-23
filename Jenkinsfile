@@ -5,8 +5,7 @@ pipeline {
   }
 
   tools {
-    jdk 'JDK8_Centos' 
-	gradle 'Gradle6.2_Centos'
+    jdk 'JDK8_Centos'
   }
 
   //Aquí comienzan los “items” del Pipeline
@@ -31,21 +30,21 @@ pipeline {
 	
 	stage('Clean') {
          steps{
-            sh 'gradle --b ./microservicio/build.gradle clean'
+            sh 'gradlew clean'
 		}
 	}
 	
 	stage('Build') {
       steps {
         echo "------------>Build<------------"
-		sh 'gradle --b ./microservicio/build.gradle build -x test'
+		sh './comun/gradlew build -x test'
       }
     }  
     
     stage('Compile & Unit Tests') {
 		steps{
 			echo "------------>>Clean<------------"
-			sh 'gradle --b ./microservicio/build.gradle test'
+			sh './comun/gradlew test'
 		}
     }
 

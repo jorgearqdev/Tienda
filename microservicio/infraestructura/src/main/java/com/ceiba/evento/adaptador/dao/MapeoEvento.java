@@ -20,7 +20,7 @@ public class MapeoEvento implements RowMapper<DtoEvento>, MapperResult {
 		LocalDateTime fechaFin = extraerLocalDateTime(resultSet, "fecha_fin");
 		char suspendido = resultSet.getString("suspendido").charAt(0);
 
-		return new DtoEvento(id, nombre, fechaInicio, fechaFin, suspendido);
+		return new DtoEvento(id, nombre, fechaInicio, fechaFin, suspendido, null);
 	}
 
 }

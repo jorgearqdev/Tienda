@@ -36,17 +36,17 @@ public interface RepositorioEvento {
 	 * @param id
 	 * @param fechaInicio
 	 * @param fechaFin
-	 * @return si existe o no
+	 * @return cantidadExisitentes
 	 */
-	boolean existeDentroDeFechasExcluyendoId(int id, LocalDateTime fechaInicio, LocalDateTime fechaFin);
+	Long existeDentroDeFechasExcluyendoId(int id, LocalDateTime fechaInicio, LocalDateTime fechaFin);
 
 	/**
 	 * Permite validar si existe un evento dentro de las fechas seleccionadas
 	 * 
 	 * @param fechaInicio
 	 * @param fechaFin
-	 * @return si existe o no
+	 * @return cantidadExisitentes
 	 */
-	boolean existeDentroDeFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin);
+	Long existeDentroDeFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin);
 
 }

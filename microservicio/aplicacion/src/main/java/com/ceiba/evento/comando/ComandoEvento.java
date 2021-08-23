@@ -1,6 +1,9 @@
 package com.ceiba.evento.comando;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.ceiba.eventoreferenciaproducto.modelo.entidad.EventoReferenciaProducto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,4 +21,5 @@ public class ComandoEvento{
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
     private char suspendido;
+    private List<EventoReferenciaProducto> eventoReferenciaProductos;
 }

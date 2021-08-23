@@ -1,4 +1,4 @@
-package com.ceiba.usuario.controlador;
+package com.ceiba.evento.controlador;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
@@ -35,7 +35,7 @@ public class ConsultaControladorEventoTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].nombre", is("test")));
+                .andExpect(jsonPath("$[0].nombre", is("Fecha Especial")));
     }
 
 

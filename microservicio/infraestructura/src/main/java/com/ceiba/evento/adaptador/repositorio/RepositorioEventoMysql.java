@@ -22,7 +22,7 @@ public class RepositorioEventoMysql implements RepositorioEvento {
     private static String sqlActualizar;
 
     @SqlStatement(namespace="evento", value="modificarEstadoSuspendido")
-    private static String sqlEliminar;
+    private static String sqlModificarEstadoSuspendido;
 
     @SqlStatement(namespace="evento", value="existenEventosDentroDeFechas")
     private static String sqlExistenEventosDentroDeFechas;
@@ -50,25 +50,25 @@ public class RepositorioEventoMysql implements RepositorioEvento {
         paramSource.addValue("id", id);
         paramSource.addValue("activo", activo);
         
-		this.customNamedParameterJdbcTemplate.actualizar(paramSource, sqlActualizar);
+		this.customNamedParameterJdbcTemplate.actualizar(paramSource, sqlModificarEstadoSuspendido);
 	}
 
 	@Override
-	public boolean existeDentroDeFechasExcluyendoId(int id, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+	public Long existeDentroDeFechasExcluyendoId(int id, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
         paramSource.addValue("fechaInicio", fechaInicio);
         paramSource.addValue("fechaFin", fechaFin);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistenEventosDentroDeFechasExcluyendoId,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistenEventosDentroDeFechasExcluyendoId,paramSource, Long.class);
 	}
 
 	@Override
-	public boolean existeDentroDeFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+	public Long existeDentroDeFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("fechaInicio", fechaInicio);
         paramSource.addValue("fechaFin", fechaFin);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistenEventosDentroDeFechas,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistenEventosDentroDeFechas,paramSource, Long.class);
 	}
 }

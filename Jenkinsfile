@@ -6,7 +6,7 @@ pipeline {
 
   tools {
     jdk 'JDK8_Centos' 
-	gradle 'Gradle5.6_Centos'
+	gradle 'Gradle6.2_Centos'
   }
 
   //Aquí comienzan los “items” del Pipeline

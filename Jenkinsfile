@@ -19,17 +19,18 @@ pipeline {
 	stage('Build') {
       steps {
         echo "------------>Build<------------"
-		sh './gradlew build -x test'
+		sh 'gradlew clean assembleRelease'
+		sh 'gradlew build -x test'
       }
     }  
     
     stage('Compile & Unit Tests') {
 		steps{
 			echo "------------>>Clean<------------"
-			sh './gradlew clean'
+			sh 'gradlew clean'
 
 			echo "------------>Unit Tests<------------"
-			sh './gradlew test'
+			sh 'gradlew test'
 		}
     }
 

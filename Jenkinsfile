@@ -30,22 +30,22 @@ pipeline {
 	
 	stage('Clean') {
          steps{
-			sh 'chmod +x ./comun/gradlew'
-            sh './comun/gradlew --b ./microservicio/build.gradle clean'
+			sh 'chmod +x ./microservicio/gradlew'
+            sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
 		}
 	}
 	
 	stage('Build') {
       steps {
         echo "------------>Build<------------"
-		sh './comun/gradlew --b ./microservicio/build.gradle build -x test'
+		sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
       }
     }  
     
     stage('Compile & Unit Tests') {
 		steps{
 			echo "------------>>Compile & Unit Tests<------------"
-			sh './comun/gradlew --b ./microservicio/build.gradle test'
+			sh './microservicio/gradlew --b ./microservicio/build.gradle test'
 		}
     }
 

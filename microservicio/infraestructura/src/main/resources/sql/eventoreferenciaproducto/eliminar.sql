@@ -1,0 +1,1 @@
+delete from evento_referencia_producto where id = :id

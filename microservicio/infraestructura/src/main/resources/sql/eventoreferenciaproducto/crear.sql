@@ -1,0 +1,1 @@
+insert into evento_referencia_producto (evento_id, referencia, precio_antiguo, precio_nuevo) values (:idEvento, :referencia, :precioAntiguo, :precioNuevo)

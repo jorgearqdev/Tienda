@@ -1,0 +1,1 @@
+insert into evento (nombre, fecha_inicio, fecha_fin) values (:nombre, :fechaInicio, :fechaFin)

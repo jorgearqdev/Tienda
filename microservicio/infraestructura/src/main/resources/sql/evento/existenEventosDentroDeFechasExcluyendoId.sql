@@ -1,0 +1,1 @@
+select count(1) from evento where (:fechaInicio between fecha_inicio and fecha_fin or :fechaFin between fecha_inicio and fecha_fin) and id <> :id

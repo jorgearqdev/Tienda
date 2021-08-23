@@ -1,1 +1,4 @@
-insert into usuario(nombre,clave,fecha_creacion) values('test','1234',now())
+INSERT INTO evento(NOMBRE, FECHA_INICIO, FECHA_FIN, SUSPENDIDO) VALUES ('Fecha Especial','2021-08-21','2021-08-21', 'N');
+
+INSERT INTO evento_referencia_producto (ID, EVENTO_ID, REFERENCIA, PRECIO_ANTIGUO, PRECIO_NUEVO) VALUES (NULL, '1', 'tv451245', '58000', '9000');
+INSERT INTO evento_referencia_producto (ID, EVENTO_ID, REFERENCIA, PRECIO_ANTIGUO, PRECIO_NUEVO) VALUES (NULL, '1', 'tv456512', '10000', '9000');

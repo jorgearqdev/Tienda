@@ -30,7 +30,7 @@ pipeline {
 	
 	stage('Clean') {
          steps{
-            sh 'gradlew clean'
+            sh './comun/gradlew clean'
 		}
 	}
 	

@@ -6,6 +6,7 @@ pipeline {
 
   tools {
     jdk 'JDK8_Centos' 
+	gradle 'Gradle5.6_Centos'
   }
 
   //Aquí comienzan los “items” del Pipeline
@@ -13,25 +14,38 @@ pipeline {
     stage('Checkout') {
 		steps{
 			echo "------------>Checkout<------------"
+			checkout([
+                $class: 'GitSCM', 
+                branches: [[name: '*/master']], 
+                doGenerateSubmoduleConfigurations: false, 
+                extensions: [], 
+                gitTool: 'Default', 
+                submoduleCfg: [], 
+                userRemoteConfigs: [[
+                    credentialsId: 'GitHub_jorgearqdev', 
+                    url:'https://github.com/jorgearqdev/Tienda.git'
+            	]]
+        	])
 		}
     }
+	
+	stage('Clean') {
+         steps{
+            sh 'gradle --b ./microservicio/build.gradle clean'
+		}
+	}
 	
 	stage('Build') {
       steps {
         echo "------------>Build<------------"
-		sh 'chmod +x gradlew'
-		sh './gradlew --b ./build.gradle -x test'
+		sh 'gradle --b ./microservicio/build.gradle build -x test'
       }
     }  
     
     stage('Compile & Unit Tests') {
 		steps{
 			echo "------------>>Clean<------------"
-			sh 'chmod +x gradlew'
-			sh './gradlew clean'
-
-			echo "------------>Unit Tests<------------"
-			sh './gradlew test'
+			sh 'gradle --b ./microservicio/build.gradle test'
 		}
     }
 
@@ -39,7 +53,7 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
-sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+			sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
         }
       }
     }
@@ -53,7 +67,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     }
     success {
 		echo 'This will run only if successful'
-		junit 'app/build/test-results/testDebugUnitTest/*.xml'
+		junit '**/test-results/test/*.xml'
     }
     failure {
 		echo 'This will run only if failed'

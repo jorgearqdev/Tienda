@@ -1,9 +1,10 @@
 package com.ceiba.evento.modelo.entidad;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import static com.ceiba.dominio.ValidadorArgumento.validarNoVacio;
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ceiba.eventoreferenciaproducto.modelo.entidad.EventoReferenciaProducto;
@@ -38,7 +39,7 @@ public class Evento {
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.suspendido = suspendido;
-		this.eventoReferenciaProductos = eventoReferenciaProductos;
+		this.eventoReferenciaProductos = new ArrayList<>(eventoReferenciaProductos);
 	}
 
 }

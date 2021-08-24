@@ -28,6 +28,12 @@ public class EventoTestDataBuilder {
 		fechaInicio = LocalDateTime.now().minusDays(UN_DIA);
 		fechaFin = LocalDateTime.now().plusDays(UN_DIA);
 	}
+	
+	public EventoTestDataBuilder conFechaActual() {
+		fechaInicio = LocalDateTime.now().minusDays(UN_DIA);
+		fechaFin = LocalDateTime.now().plusDays(UN_DIA);
+		return this;
+	}
 
 	public EventoTestDataBuilder conNombre(String nombre) {
 		this.nombre = nombre;

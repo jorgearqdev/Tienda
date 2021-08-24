@@ -3,6 +3,7 @@ package com.ceiba.evento.servicio;
 import java.time.LocalDateTime;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
@@ -31,6 +32,24 @@ public class ServicioActualizarEventoTest {
 
 		BasePrueba.assertThrows(() -> servicioActualizarEvento.ejecutar(evento), ExcepcionDuplicidad.class,
 				"Ya existen eventos dentro de las fechas seleccionadas");
+	}
+	
+	@Test
+	public void validarEventoSinExistenciaPreviaTest() {
+		// arrange
+		Evento evento = new EventoTestDataBuilder().conId().build();
+		RepositorioEvento repositorioEvento = Mockito.mock(RepositorioEvento.class);
+		ServicioActualizarEventoReferenciaProducto servicioActualizarEventoReferenciaProducto = Mockito
+				.mock(ServicioActualizarEventoReferenciaProducto.class);
+
+		Mockito.when(repositorioEvento.existeDentroDeFechasExcluyendoId( Mockito.any(Integer.class),
+				Mockito.any(LocalDateTime.class), Mockito.any(LocalDateTime.class))).thenReturn(0L);
+				
+		ServicioActualizarEvento servicioActualizarEvento = new ServicioActualizarEvento(repositorioEvento,
+				servicioActualizarEventoReferenciaProducto);
+		// act - assert
+
+		Assertions.assertDoesNotThrow(() -> servicioActualizarEvento.ejecutar(evento));
 
 	}
 }

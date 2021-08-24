@@ -23,9 +23,9 @@ public class ServicioCrearEventoTest {
 		RepositorioEvento repositorioEvento = Mockito.mock(RepositorioEvento.class);
 		Mockito.when(repositorioEvento.existeDentroDeFechas(Mockito.any(LocalDateTime.class),
 				Mockito.any(LocalDateTime.class))).thenReturn(1L);
-		ServicioCrearEvento servicioCrearUsuario = new ServicioCrearEvento(repositorioEvento, null);
+		ServicioCrearEvento servicioCrearEvento = new ServicioCrearEvento(repositorioEvento, null);
 		// act - assert
-		BasePrueba.assertThrows(() -> servicioCrearUsuario.ejecutar(evento), ExcepcionDuplicidad.class,
+		BasePrueba.assertThrows(() -> servicioCrearEvento.ejecutar(evento), ExcepcionDuplicidad.class,
 				"Ya existen eventos dentro de las fechas seleccionadas");
 	}
 

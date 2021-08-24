@@ -42,6 +42,12 @@ pipeline {
       }
     }  
     
+    stage('Compile & Unit Tests') {
+		steps{
+			echo "------------>>Compile & Unit Tests<------------"
+			sh './microservicio/gradlew --b ./microservicio/build.gradle test'
+		}
+    }
 
     stage('Static Code Analysis') {
       steps{

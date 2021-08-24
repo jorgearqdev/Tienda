@@ -2,6 +2,7 @@ package com.ceiba.evento.puerto.repositorio;
 
 import java.time.LocalDateTime;
 
+import com.ceiba.evento.modelo.dto.DtoEventoActualizar;
 import com.ceiba.evento.modelo.entidad.Evento;
 
 public interface RepositorioEvento {
@@ -19,15 +20,6 @@ public interface RepositorioEvento {
 	 * @param evento
 	 */
 	void actualizar(Evento evento);
-
-	/**
-	 * Permite moficar el estado de suspendido, en caso de estar activo(N) pasa
-	 * a estar en suspendido(S) y en caso viceversa
-	 * 
-	 * @param id
-	 * @param activo
-	 */
-	void switchSuspendido(Integer id, char activo);
 
 	/**
 	 * Permite validar si existe un evento dentro de las fechas seleccionadas
@@ -48,5 +40,13 @@ public interface RepositorioEvento {
 	 * @return cantidadExisitentes
 	 */
 	Long existeDentroDeFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin);
+
+	/**
+	 * Permite moficar el estado de suspendido, en caso de estar activo(N) pasa
+	 * a estar en suspendido(S) y en caso viceversa
+	 * 
+	 * @param dtoEventoActualizar
+	 */
+	void switchSuspendido(DtoEventoActualizar dtoEventoActualizar);
 
 }

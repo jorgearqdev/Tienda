@@ -16,9 +16,11 @@ public class ServicioSwitchEvento {
 
 	public void ejecutar(DtoEventoActualizar dtoEventoActualizar) {
 		if (dtoEventoActualizar.getSuspendido() == SUSPENDIDO) {
-			this.repositorioEvento.switchSuspendido(dtoEventoActualizar.getId(), ACTIVO);
+			dtoEventoActualizar.setSuspendido(ACTIVO);
+			this.repositorioEvento.switchSuspendido(dtoEventoActualizar);
 		} else {
-			this.repositorioEvento.switchSuspendido(dtoEventoActualizar.getId(), SUSPENDIDO);
+			dtoEventoActualizar.setSuspendido(SUSPENDIDO);
+			this.repositorioEvento.switchSuspendido(dtoEventoActualizar);
 		}
 	}
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import com.ceiba.evento.modelo.dto.DtoEventoActualizar;
 import com.ceiba.evento.modelo.entidad.Evento;
 import com.ceiba.evento.puerto.repositorio.RepositorioEvento;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
@@ -45,12 +46,8 @@ public class RepositorioEventoMysql implements RepositorioEvento {
 	}
 
 	@Override
-	public void switchSuspendido(Integer id, char activo) {
-		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
-        paramSource.addValue("activo", activo);
-        
-		this.customNamedParameterJdbcTemplate.actualizar(paramSource, sqlModificarEstadoSuspendido);
+	public void switchSuspendido(DtoEventoActualizar dtoEventoActualizar) {        
+		this.customNamedParameterJdbcTemplate.actualizar(dtoEventoActualizar, sqlModificarEstadoSuspendido);
 	}
 
 	@Override

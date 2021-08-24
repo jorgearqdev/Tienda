@@ -33,6 +33,11 @@ public class EventoTestDataBuilder {
 		this.nombre = nombre;
 		return this;
 	}
+	
+	public EventoTestDataBuilder conId() {
+		this.id = 1;
+		return this;
+	}
 
 	public Evento build() {
 		return new Evento(id, nombre, fechaInicio, fechaFin, ACTIVO, productos);

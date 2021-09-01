@@ -4,4 +4,4 @@ select e.id,
 	e.fecha_fin,
 	e.suspendido
 from evento e 
-where now() between fecha_inicio and fecha_fin
+where now() < fecha_fin

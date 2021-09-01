@@ -4,10 +4,10 @@ import com.ceiba.evento.comando.ComandoEventoActualizar;
 
 public class ComandoEventoActualizarTestDataBuilder {
 
-	private static final char ACTIVO = 'N';
+	private static final String ACTIVO = "N";
 
 	private Integer id;
-    private char suspendido;
+    private String suspendido;
     
 	public ComandoEventoActualizarTestDataBuilder() {
 		id = 2;

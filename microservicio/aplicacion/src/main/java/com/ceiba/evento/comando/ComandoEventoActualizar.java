@@ -12,5 +12,5 @@ import lombok.Setter;
 public class ComandoEventoActualizar{
 
     private Integer id;
-    private char suspendido;
+    private String suspendido;
 }

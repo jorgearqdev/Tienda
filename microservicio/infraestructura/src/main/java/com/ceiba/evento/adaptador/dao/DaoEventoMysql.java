@@ -25,4 +25,5 @@ public class DaoEventoMysql implements DaoEvento {
     public List<DtoEvento> listar() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoEvento());
     }
+    
 }

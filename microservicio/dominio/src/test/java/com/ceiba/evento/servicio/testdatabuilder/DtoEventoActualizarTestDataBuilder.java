@@ -4,11 +4,11 @@ import com.ceiba.evento.modelo.dto.DtoEventoActualizar;
 
 public class DtoEventoActualizarTestDataBuilder {
 
-	private static final char ACTIVO = 'N';
-	private static final char SUSPENDIDO = 'S';
+	private static final String ACTIVO = "N";
+	private static final String SUSPENDIDO = "S";
 
 	private Integer id;
-	private char suspendido;
+	private String suspendido;
 
 	public DtoEventoActualizarTestDataBuilder() {
 		id = 1;

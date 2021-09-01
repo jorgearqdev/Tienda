@@ -12,6 +12,7 @@ public class DtoEventoReferenciaProductoTestDataBuilder {
 	private int precioAntiguo;
 	private int precioNuevo;
 	private int descuento;
+	private int valorConDescuentoAdicional;
 
 	public DtoEventoReferenciaProductoTestDataBuilder() {
 		id = 1;
@@ -20,6 +21,7 @@ public class DtoEventoReferenciaProductoTestDataBuilder {
 		precioAntiguo = 10000;
 		precioAntiguo = 9000;
 		descuento = 80;
+		valorConDescuentoAdicional = 0;
 	}
 
 	public DtoEventoReferenciaProductoTestDataBuilder conReferencia(String referencia) {
@@ -28,6 +30,6 @@ public class DtoEventoReferenciaProductoTestDataBuilder {
 	}
 
 	public DtoEventoReferenciaProducto build() {
-		return new DtoEventoReferenciaProducto(id, idEvento, referencia, precioAntiguo, precioNuevo, descuento);
+		return new DtoEventoReferenciaProducto(id, idEvento, referencia, precioAntiguo, precioNuevo, descuento, valorConDescuentoAdicional);
 	}
 }

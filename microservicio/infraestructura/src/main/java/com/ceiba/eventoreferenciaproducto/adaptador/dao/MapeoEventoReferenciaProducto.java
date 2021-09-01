@@ -19,7 +19,7 @@ public class MapeoEventoReferenciaProducto implements RowMapper<DtoEventoReferen
 		int precioAntiguo = resultSet.getInt("precio_antiguo");
 		int precioNuevo = resultSet.getInt("precio_nuevo");
 
-		return new DtoEventoReferenciaProducto(id, idEvento, referencia, precioAntiguo, precioNuevo, 0);
+		return new DtoEventoReferenciaProducto(id, idEvento, referencia, precioAntiguo, precioNuevo, 0, null);
 	}
 
 }

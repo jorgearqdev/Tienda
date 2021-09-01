@@ -5,8 +5,8 @@ import com.ceiba.evento.puerto.repositorio.RepositorioEvento;
 
 public class ServicioSwitchEvento {
 
-	private static final char SUSPENDIDO = 'S';
-	private static final char ACTIVO = 'N';
+	private static final String SUSPENDIDO = "S";
+	private static final String ACTIVO = "N";
 
 	private final RepositorioEvento repositorioEvento;
 
@@ -15,7 +15,7 @@ public class ServicioSwitchEvento {
 	}
 
 	public void ejecutar(DtoEventoActualizar dtoEventoActualizar) {
-		if (dtoEventoActualizar.getSuspendido() == SUSPENDIDO) {
+		if (dtoEventoActualizar.getSuspendido().equals(SUSPENDIDO)) {
 			dtoEventoActualizar.setSuspendido(ACTIVO);
 			this.repositorioEvento.switchSuspendido(dtoEventoActualizar);
 		} else {

@@ -10,5 +10,5 @@ public class DtoEventoActualizar {
 
 	private Integer id;
 	@Setter
-	private char suspendido;
+	private String suspendido;
 }

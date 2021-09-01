@@ -14,4 +14,5 @@ public class DtoEventoReferenciaProducto {
 	private int precioAntiguo;
 	private int precioNuevo;
 	private int descuento;
+	private Integer valorConDescuentoAdicional;
 }

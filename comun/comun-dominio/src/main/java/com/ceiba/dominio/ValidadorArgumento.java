@@ -50,6 +50,12 @@ public class ValidadorArgumento {
             throw new ExcepcionLongitudValor(mensaje);
         }
     }
+    
+    public static void validarLongitudMaxima(Object valor, int longitudMaxima, String mensaje) {
+        if (valor.toString().length() > longitudMaxima) {
+            throw new ExcepcionLongitudValor(mensaje);
+        }
+    }
 
     public static void validarMenor(LocalDateTime fechaInicial, LocalDateTime fechaFinal, String mensaje) {
         if (fechaInicial.toLocalDate().isAfter(fechaFinal.toLocalDate())) {
@@ -94,4 +100,5 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
+   
 }

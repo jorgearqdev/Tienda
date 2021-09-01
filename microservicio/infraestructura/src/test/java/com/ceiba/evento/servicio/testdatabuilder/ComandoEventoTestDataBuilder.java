@@ -35,6 +35,16 @@ public class ComandoEventoTestDataBuilder {
 		this.nombre = nombre;
 		return this;
 	}
+	
+	public ComandoEventoTestDataBuilder conFechaFin(LocalDateTime fechaFin) {
+		this.fechaFin = fechaFin;
+		return this;
+	}
+	
+	public ComandoEventoTestDataBuilder conFechaInicio(LocalDateTime fechaInicio) {
+		this.fechaInicio = fechaInicio;
+		return this;
+	}
 
 	public ComandoEvento build() {
 		return new ComandoEvento(id, nombre, fechaInicio, fechaFin, suspendido, eventoReferenciaProductos);

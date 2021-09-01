@@ -15,13 +15,18 @@ public class ServicioListarEvento {
 
 	private final DaoEvento daoEvento;
 	private final DaoEventoReferenciaProducto daoEventoReferenciaProducto;
+	private final ServicioCalcularFechaUltimoViernes servicioCalcularFechaUltimoViernes;
+
 	private static final int CERO = 0;
 	private static final int CIEN = 100;
 	private static final int PORCENTAJE_DESCUENTO_VIERNES = 10;
+	private static final float PORCENTAJE_DECIMAL_DESCUENTO_VIERNES = 0.1f;
 
-	public ServicioListarEvento(DaoEvento daoEvento, DaoEventoReferenciaProducto daoEventoReferenciaProducto) {
+	public ServicioListarEvento(DaoEvento daoEvento, DaoEventoReferenciaProducto daoEventoReferenciaProducto,
+			ServicioCalcularFechaUltimoViernes servicioCalcularFechaUltimoViernes) {
 		this.daoEvento = daoEvento;
 		this.daoEventoReferenciaProducto = daoEventoReferenciaProducto;
+		this.servicioCalcularFechaUltimoViernes = servicioCalcularFechaUltimoViernes;
 	}
 
 	public List<DtoEvento> ejecutar() {
@@ -29,7 +34,7 @@ public class ServicioListarEvento {
 
 		Date hoy = Timestamp.valueOf(LocalDateTime.now());
 
-		boolean esUltimoViernes = eliminarHoraMinutos(obtenerUltimoViernesDelMes())
+		boolean esUltimoViernes = eliminarHoraMinutos(servicioCalcularFechaUltimoViernes.obtenerUltimoViernesDelMes())
 				.compareTo(eliminarHoraMinutos(hoy)) == CERO;
 
 		listado.forEach(evento -> {
@@ -47,20 +52,12 @@ public class ServicioListarEvento {
 							/ eventoReferenciaProducto.getPrecioAntiguo());
 			if (esUltimoViernes) {
 				eventoReferenciaProducto.setValorConDescuentoAdicional(eventoReferenciaProducto.getPrecioNuevo()
-						- (int) (eventoReferenciaProducto.getPrecioNuevo() * 0.1));
-				
+						- (int) (eventoReferenciaProducto.getPrecioNuevo() * PORCENTAJE_DECIMAL_DESCUENTO_VIERNES));
+
 				eventoReferenciaProducto
 						.setDescuento(eventoReferenciaProducto.getDescuento() + PORCENTAJE_DESCUENTO_VIERNES);
 			}
 		}
-	}
-
-	public Date obtenerUltimoViernesDelMes() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-		calendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, -1);
-
-		return calendar.getTime();
 	}
 
 	private Date eliminarHoraMinutos(Date date) {

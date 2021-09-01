@@ -6,7 +6,7 @@ jasypt:
 server:
    port: 8082
    servlet:
-      context-path: /TiendaEventos
+      context-path: /tienda
       session:
          timeout: 21600s
 

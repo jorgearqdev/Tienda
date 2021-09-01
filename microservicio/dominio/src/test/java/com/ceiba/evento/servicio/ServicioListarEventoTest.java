@@ -27,7 +27,10 @@ public class ServicioListarEventoTest {
 
 		DaoEventoReferenciaProducto daoEventoReferenciaProducto = Mockito.mock(DaoEventoReferenciaProducto.class);
 		DaoEvento daoEvento = Mockito.mock(DaoEvento.class);
-		ServicioListarEvento servicioListarEvento = new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto);
+
+		ServicioCalcularFechaUltimoViernes servicioCalcularFechaUltimoViernes = new ServicioCalcularFechaUltimoViernes();
+		
+		ServicioListarEvento servicioListarEvento = new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto, servicioCalcularFechaUltimoViernes);
 
 		Mockito.when(daoEvento.listar()).thenReturn(eventos);
 		
@@ -48,18 +51,18 @@ public class ServicioListarEventoTest {
 
 		DaoEventoReferenciaProducto daoEventoReferenciaProducto = Mockito.mock(DaoEventoReferenciaProducto.class);
 		DaoEvento daoEvento = Mockito.mock(DaoEvento.class);
-		ServicioListarEvento servicioListarEvento = new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto);
-		
-		ServicioListarEvento spyTemp = Mockito.spy(servicioListarEvento);
+		ServicioCalcularFechaUltimoViernes servicioCalcularFechaUltimoViernes = Mockito.mock(ServicioCalcularFechaUltimoViernes.class);
 
+		ServicioListarEvento servicioListarEvento = new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto, servicioCalcularFechaUltimoViernes);
+		
 		Mockito.when(daoEvento.listar()).thenReturn(eventos);
 
-	    Mockito.doReturn(new Date()).when(spyTemp).obtenerUltimoViernesDelMes();
+		Mockito.when(servicioCalcularFechaUltimoViernes.obtenerUltimoViernesDelMes()).thenReturn(new Date());
 
 		Mockito.when(daoEventoReferenciaProducto.listar(Mockito.anyInt()))
 				.thenReturn(eventos.get(0).getEventoReferenciaProductos());
 		
-		List<DtoEventoReferenciaProducto> referencias = spyTemp.ejecutar().get(0).getEventoReferenciaProductos();
+		List<DtoEventoReferenciaProducto> referencias = servicioListarEvento.ejecutar().get(0).getEventoReferenciaProductos();
 
 		referencias.forEach(referencia -> {
 			Assertions.assertNotNull(referencia.getValorConDescuentoAdicional());
@@ -79,8 +82,10 @@ public class ServicioListarEventoTest {
 
 		Mockito.when(daoEvento.listar()).thenReturn(Collections.emptyList());
 
-		ServicioListarEvento servicioListarEvento = new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto);
-		// act - assert
+		ServicioCalcularFechaUltimoViernes servicioCalcularFechaUltimoViernes = new ServicioCalcularFechaUltimoViernes();
+		
+		ServicioListarEvento servicioListarEvento = new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto, servicioCalcularFechaUltimoViernes);
+		
 		Assertions.assertEquals(0, servicioListarEvento.ejecutar().size());
 	}
 

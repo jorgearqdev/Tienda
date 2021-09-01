@@ -35,13 +35,54 @@ public class ComandoControladorEventoTest {
 
 	@Test
 	public void crear() throws Exception {
-		// arrange
 		ComandoEvento evento = new ComandoEventoTestDataBuilder().build();
 
-		// act - assert
 		mocMvc.perform(post("/evento").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(evento))).andExpect(status().isOk())
 				.andExpect(content().json("{'valor': 2}"));
+	}
+
+	@Test
+	public void crearEventoConNombreCorto() throws Exception {
+		ComandoEvento evento = new ComandoEventoTestDataBuilder().conNombre("Fe").build();
+
+		mocMvc.perform(post("/evento").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(evento))).andExpect(status().isBadRequest())
+				.andExpect(content().json(
+						"{'nombreExcepcion': 'ExcepcionLongitudValor',    'mensaje': 'La longitud minima del nombre debe ser 3'}"));
+	}
+
+	@Test
+	public void crearEventoConNombreLargo() throws Exception {
+		ComandoEvento evento = new ComandoEventoTestDataBuilder()
+				.conNombre(
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut scelerisque velit id cursus maximus. Fusce sit amet arcu ut.1")
+				.build();
+
+		mocMvc.perform(post("/evento").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(evento))).andExpect(status().isBadRequest())
+				.andExpect(content().json(
+						"{'nombreExcepcion': 'ExcepcionLongitudValor',    'mensaje': 'La longitud maxima del nombre debe ser 120'}"));
+	}
+
+	@Test
+	public void crearEventoSinFechaInicio() throws Exception {
+		ComandoEvento evento = new ComandoEventoTestDataBuilder().conFechaInicio(null).build();
+
+		mocMvc.perform(post("/evento").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(evento))).andExpect(status().isBadRequest())
+				.andExpect(content().json(
+						"{'nombreExcepcion': 'ExcepcionValorObligatorio',    'mensaje': 'Se debe ingresar la fecha inicio'}"));
+	}
+
+	@Test
+	public void crearEventoSinFechaFin() throws Exception {
+		ComandoEvento evento = new ComandoEventoTestDataBuilder().conFechaFin(null).build();
+
+		mocMvc.perform(post("/evento").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(evento))).andExpect(status().isBadRequest())
+		.andExpect(content().json(
+				"{'nombreExcepcion': 'ExcepcionValorObligatorio',    'mensaje': 'Se debe ingresar la fecha fin'}"));
 	}
 
 	@Test

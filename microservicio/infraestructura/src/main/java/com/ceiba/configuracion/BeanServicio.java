@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.ceiba.evento.puerto.dao.DaoEvento;
 import com.ceiba.evento.puerto.repositorio.RepositorioEvento;
 import com.ceiba.evento.servicio.ServicioActualizarEvento;
+import com.ceiba.evento.servicio.ServicioCalcularFechaUltimoViernes;
 import com.ceiba.evento.servicio.ServicioCrearEvento;
 import com.ceiba.evento.servicio.ServicioListarEvento;
 import com.ceiba.evento.servicio.ServicioSwitchEvento;
@@ -54,8 +55,15 @@ public class BeanServicio {
 	}
 
 	@Bean
-	public ServicioListarEvento servicioListarEvento(DaoEvento daoEvento, DaoEventoReferenciaProducto daoEventoReferenciaProducto) {
-		return new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto);
+	public ServicioListarEvento servicioListarEvento(DaoEvento daoEvento,
+			DaoEventoReferenciaProducto daoEventoReferenciaProducto,
+			ServicioCalcularFechaUltimoViernes servicioCalcularFechaUltimoViernes) {
+		return new ServicioListarEvento(daoEvento, daoEventoReferenciaProducto, servicioCalcularFechaUltimoViernes);
+	}
+
+	@Bean
+	public ServicioCalcularFechaUltimoViernes servicioCalcularFechaUltimoViernes() {
+		return new ServicioCalcularFechaUltimoViernes();
 	}
 
 }

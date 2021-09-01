@@ -3,7 +3,6 @@ package com.ceiba.evento.servicio.testdatabuilder;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.ceiba.evento.modelo.entidad.Evento;
 import com.ceiba.eventoreferenciaproducto.modelo.entidad.EventoReferenciaProducto;
@@ -24,7 +23,7 @@ public class EventoTestDataBuilder {
 		EventoReferenciaProductoTestDataBuilder eventoReferenciaProductoTestDataBuilder = new EventoReferenciaProductoTestDataBuilder();
 		productos.add(eventoReferenciaProductoTestDataBuilder.build());
 	
-		nombre = UUID.randomUUID().toString();
+		nombre = "Fecha Test";
 		fechaInicio = LocalDateTime.now().minusDays(UN_DIA);
 		fechaFin = LocalDateTime.now().plusDays(UN_DIA);
 	}

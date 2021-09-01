@@ -1,7 +1,5 @@
 package com.ceiba.evento.servicio.testdatabuilder;
 
-import java.util.UUID;
-
 import com.ceiba.eventoreferenciaproducto.modelo.dto.DtoEventoReferenciaProducto;
 
 public class DtoEventoReferenciaProductoTestDataBuilder {
@@ -17,7 +15,7 @@ public class DtoEventoReferenciaProductoTestDataBuilder {
 	public DtoEventoReferenciaProductoTestDataBuilder() {
 		id = 1;
 		idEvento = 2;
-		referencia = UUID.randomUUID().toString();
+		referencia = "referencia test";
 		precioAntiguo = 10000;
 		precioAntiguo = 9000;
 		descuento = 80;

@@ -56,7 +56,7 @@ public class ComandoControladorEventoTest {
 	public void crearEventoConNombreLargo() throws Exception {
 		ComandoEvento evento = new ComandoEventoTestDataBuilder()
 				.conNombre(
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut scelerisque velit id cursus maximus. Fusce sit amet arcu ut.1")
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut scelerisque velit id cursus maximus. Fusce sit amet arcu ut..")
 				.build();
 
 		mocMvc.perform(post("/evento").contentType(MediaType.APPLICATION_JSON)

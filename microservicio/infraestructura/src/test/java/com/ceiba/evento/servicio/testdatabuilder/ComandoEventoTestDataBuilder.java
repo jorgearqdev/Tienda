@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.ceiba.evento.comando.ComandoEvento;
-import com.ceiba.eventoreferenciaproducto.modelo.entidad.EventoReferenciaProducto;
+import com.ceiba.eventoreferenciaproducto.modelo.dto.DtoEventoReferenciaProducto;
 
 public class ComandoEventoTestDataBuilder {
 
@@ -19,9 +19,9 @@ public class ComandoEventoTestDataBuilder {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
     private char suspendido;
-    private List<EventoReferenciaProducto> eventoReferenciaProductos;
+    private List<DtoEventoReferenciaProducto> eventoReferenciaProductos;
 
-	public ComandoEventoTestDataBuilder() {
+	public ComandoEventoTestDataBuilder() throws Exception {
 		nombre = UUID.randomUUID().toString();
 		fechaInicio = LocalDateTime.now().plusDays(VEINTE_DIAS);
 		fechaFin = LocalDateTime.now().plusDays(TREINTA_DIAS);
@@ -43,6 +43,11 @@ public class ComandoEventoTestDataBuilder {
 	
 	public ComandoEventoTestDataBuilder conFechaInicio(LocalDateTime fechaInicio) {
 		this.fechaInicio = fechaInicio;
+		return this;
+	}
+	
+	public ComandoEventoTestDataBuilder conListaReferencias(List<DtoEventoReferenciaProducto> eventoReferenciaProductos) {
+		this.eventoReferenciaProductos = eventoReferenciaProductos;
 		return this;
 	}
 

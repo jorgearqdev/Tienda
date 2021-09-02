@@ -4,6 +4,7 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMaxima;
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMinima;
 import static com.ceiba.dominio.ValidadorArgumento.validarMenor;
+import static com.ceiba.dominio.ValidadorArgumento.validarPositivo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,8 +34,8 @@ public class EventoReferenciaProducto {
 	public EventoReferenciaProducto(Integer id, Integer idEvento, String referencia, int precioAntiguo,
 			int precioNuevo) {
 		
-		validarObligatorio(precioAntiguo, SE_DEBE_INGRESAR_EL_PRECIO_ANTIGUO);
-		validarObligatorio(precioNuevo, SE_DEBE_INGRESAR_EL_PRECIO_NUEVO);
+		validarPositivo(Double.valueOf(precioAntiguo), SE_DEBE_INGRESAR_EL_PRECIO_ANTIGUO);
+		validarPositivo(Double.valueOf(precioNuevo), SE_DEBE_INGRESAR_EL_PRECIO_NUEVO);
 		validarObligatorio(referencia, SE_DEBE_INGRESAR_LA_REFERENCIA_DEL_PRODUCTO);
 		validarMenor(Long.valueOf(precioNuevo), Long.valueOf(precioAntiguo), PRECIO_NUEVO_MENOR_PRECIO_ANTIGUO);
 		validarLongitudMinima(referencia, LONGITUD_MINIMA_TEXTO, MENSAJE_LONGITUD_MINIMA_REFERENCIA);

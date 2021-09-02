@@ -15,7 +15,7 @@ public class EventoReferenciaProductoTestDataBuilder {
 	public EventoReferenciaProductoTestDataBuilder() {
 		referencia = UUID.randomUUID().toString();
 		precioAntiguo = 10000;
-		precioAntiguo = 9000;
+		precioNuevo = 9000;
 	}
 
 	public EventoReferenciaProductoTestDataBuilder conReferencia(String referencia) {

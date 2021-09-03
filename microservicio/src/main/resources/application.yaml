@@ -14,7 +14,7 @@ spring:
    datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: jdbc:mysql://localhost:3306/tienda_pruebas_carga?autoReconnect=true&useSSL=false
+      jdbcUrl: jdbc:mysql://localhost:3306/tienda?autoReconnect=true&useSSL=false
       username: root
       password: 12345678
       hikari:
